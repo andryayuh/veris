@@ -9,5 +9,5 @@ var obj;
 //   obj = JSON.parse(data);
 // });
 
-// export const n = process.argv[2];
-console.log('hi');
+n = process.argv[2];
+console.log(n);
