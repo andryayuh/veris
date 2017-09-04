@@ -1,47 +1,44 @@
-var fs = require('fs');
 var Promise = require('bluebird');
+var fs = Promise.promisifyAll(require('fs'));
 
-//onFileContent = cb
-var readFiles = function(dirname, onFileContent, onError) {
-  fs.readdir(dirname, function(err, filenames) {
-    if (err) {
-      onError(err);
-      return;
-    }
-
-    filenames.forEach(function(filename) {
-
-      fs.readFile(dirname + filename, 'utf-8', function(err, content) {
-        if (err) {
-          onError(err);
-          return;
-        }
-        onFileContent(filename, content);
-      });
+var readFiles = (dirname, onFileContent) => {
+  return fs.readdirAsync(dirname, 'utf-8').then(filenames => {
+    return filenames.map(filename => {
+      return fs.readFileAsync(dirname + filename, 'utf-8')
+        .then(content => {
+          return onFileContent(content);
+        });
     });
-
   });
 };
 
 // store
-var data = [];
-var loadJSON = function() {
-  // var ordered = [];
 
-  readFiles(__dirname + '/data/json/', function(filename, content) {
+var loadJSON = () => {
+  var store = [];
+  readFiles(__dirname + '/data/json/', (content) => {
 
     content = JSON.parse(content);
+    // console.log(content);
     if (content.action.hasOwnProperty('hacking') && content.actor.hasOwnProperty('external')) {
-      data.push(content);
-      console.log('-------', data.length);
-      // console.log('!@!@@@@@', data);
+      store.push(content);
+      // console.log('(((', content);
     }
-
-    // console.log('CONTENT', content);
-  }, function(err) {
-    throw err;
-  });
+  }).then(Promise.all)
+    .then(() => {
+      console.log('STORE', store);
+      // sort stuff
+    });
 };
+
+// store.sort((a, b) => {
+//   var yearA = a.timeline.incident.year;
+//   var monthA = a.timeline.incident.month ? a.timeline.incident.year : 1;
+//   var dayA = a.timeline.incident.day ? a.timeline.incident.day : 1;   
+//   var yearB = b.timeline.incident.year;
+//   var monthB = b.timeline.incident.month ? b.timeline.incident.year : 1;
+//   var dayB = b.timeline.incident.day ? b.timeline.incident.day : 1;  
+// });
 
 
 module.exports = loadJSON;
