@@ -54,11 +54,19 @@ var loadJSON = () => {
         if (dayB < dayA) { return 1; }
         return 0;
       });
+      
       console.log(store.length);
       console.log('!!!STORE', dates(store.slice(0, 10)));
+      store = store.slice(0, 3);
 
+      fs.writeFile('latest-incidents.json', JSON.stringify(store), (err) => {
+        if (err) { throw err; }
+        console.log('The file has been saved!');
+      });
     });
 };
+
+
 
 
 module.exports = loadJSON;

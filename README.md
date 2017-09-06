@@ -1,5 +1,13 @@
 # VERIS Feed Test
 
+### Usage
+
+```
+yarn run server-dev
+yarn run react-dev
+node veris.js NUMBER_OF_INCIDENTS
+```
+
 ### Deliverables
 A repository containing at least the following files:
 
