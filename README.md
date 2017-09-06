@@ -2,7 +2,9 @@
 
 ### Running the App
 Install dependencies: `npm install`
+
 To write *n* newest incidents to `latest-incidents.json`: `node veris.js NUMBER_OF_INCIDENTS`
+
 To load webpage/ run webpack build: `npm run react-dev`
 
 
