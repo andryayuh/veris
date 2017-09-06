@@ -26,19 +26,39 @@ var loadJSON = () => {
     }
   }).then(Promise.all)
     .then(() => {
-      console.log('STORE', store);
-      // sort stuff
+
+      var sliced = store.slice(0, 10);
+      var dates = function(arr) {
+
+        return arr.map(a => {
+          var yearA = a.timeline.incident.year;
+          var monthA = a.timeline.incident.month ? a.timeline.incident.month : 1;
+          var dayA = a.timeline.incident.day ? a.timeline.incident.day : 1; 
+          return `${monthA}/${dayA}/${yearA}`;  
+        });
+      };
+      console.log('$$$$$$', dates(sliced));
+
+      store.sort((a, b) => {
+        var yearA = a.timeline.incident.year;
+        var monthA = a.timeline.incident.month ? a.timeline.incident.month : 1;
+        var dayA = a.timeline.incident.day ? a.timeline.incident.day : 1;   
+        var yearB = b.timeline.incident.year;
+        var monthB = b.timeline.incident.month ? b.timeline.incident.month : 1;
+        var dayB = b.timeline.incident.day ? b.timeline.incident.day : 1;  
+        if (yearA < yearB) { return -1; }
+        if (yearB < yearA) { return 1; }
+        if (monthA < monthB) { return -1; }
+        if (monthB < monthA) { return 1; }
+        if (dayA < dayB) { return -1; }
+        if (dayB < dayA) { return 1; }
+        return 0;
+      });
+      console.log(store.length);
+      console.log('!!!STORE', dates(store.slice(0, 10)));
+
     });
 };
-
-// store.sort((a, b) => {
-//   var yearA = a.timeline.incident.year;
-//   var monthA = a.timeline.incident.month ? a.timeline.incident.year : 1;
-//   var dayA = a.timeline.incident.day ? a.timeline.incident.day : 1;   
-//   var yearB = b.timeline.incident.year;
-//   var monthB = b.timeline.incident.month ? b.timeline.incident.year : 1;
-//   var dayB = b.timeline.incident.day ? b.timeline.incident.day : 1;  
-// });
 
 
 module.exports = loadJSON;
