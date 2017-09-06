@@ -12,8 +12,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      items: [1, 2, 3, 4, 5]
+    $.get( '/incidents', (data) => {
+      // data = JSON.parse(data);
+      console.log(data);
+      console.log(typeof data);
+      this.setState({
+        items: data
+      });
+      console.log('loaded json');
     });
   }
 

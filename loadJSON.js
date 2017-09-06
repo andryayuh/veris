@@ -14,7 +14,8 @@ var readFiles = (dirname, onFileContent) => {
 
 // store
 
-var loadJSON = () => {
+var loadJSON = (n) => {
+  console.log('&&&&&&', n);
   var store = [];
   readFiles(__dirname + '/data/json/', (content) => {
 
@@ -27,7 +28,7 @@ var loadJSON = () => {
   }).then(Promise.all)
     .then(() => {
 
-      var sliced = store.slice(0, 10);
+      var sliced = store.slice(0, n);
       var dates = function(arr) {
 
         return arr.map(a => {
@@ -54,10 +55,10 @@ var loadJSON = () => {
         if (dayB < dayA) { return 1; }
         return 0;
       });
-      
+
       console.log(store.length);
       console.log('!!!STORE', dates(store.slice(0, 10)));
-      store = store.slice(0, 3);
+      store = store.slice(0, n);
 
       fs.writeFile('latest-incidents.json', JSON.stringify(store), (err) => {
         if (err) { throw err; }
