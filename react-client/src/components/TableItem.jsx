@@ -9,6 +9,7 @@ const TableItem = (props) => {
   return (
 
     <tr>
+      <td>{ props.idx }</td>
       <td>{ props.item.victim.victim_id }</td>
       <td>{ props.item.victim.country[0]}</td>
       <td>{ props.item.actor.external.country[0] }</td>

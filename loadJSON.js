@@ -49,7 +49,7 @@ var loadJSON = (n) => {
       return 0;
     });
 
-    store = store.slice(0, n);
+    store = store.slice(store.length - n).reverse();
 
     fs.writeFile('latest-incidents.json', JSON.stringify(store), (err) => {
       if (err) { throw err; }

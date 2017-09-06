@@ -1,12 +1,10 @@
 # VERIS Feed Test
 
-### Usage
+### Running the App
+Install dependencies: `npm install`
+To write *n* newest incidents to `latest-incidents.json`: `node veris.js NUMBER_OF_INCIDENTS`
+To load webpage/ run webpack build: `npm run react-dev`
 
-```
-yarn run server-dev
-yarn run react-dev
-node veris.js NUMBER_OF_INCIDENTS
-```
 
 ### Deliverables
 A repository containing at least the following files:

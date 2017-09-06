@@ -9,6 +9,8 @@ var app = express();
 app.use(express.static(__dirname + '/react-client/dist'));
 
 var n = process.argv[2];
+
+// run loadJSON.js to dump n latest incidents to latest-incidents.json
 json(n);
 
 app.get('/incidents', (req, res) => {

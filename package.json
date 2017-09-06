@@ -2,10 +2,9 @@
   "name": "veris-feed-test",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "react-dev": "webpack -d --watch",
-    "server-dev": "node index.js"
+    "server-dev": "node veris.js"
   },
   "author": "Andrea Miralles",
   "license": "ISC",
