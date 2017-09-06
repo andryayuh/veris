@@ -1,5 +1,5 @@
 import React from 'react';
-import ListItem from './TableItem.jsx';
+import TableItem from './TableItem.jsx';
 
 const Table = (props) => (
   <table>
@@ -12,7 +12,7 @@ const Table = (props) => (
         <th>Actor Variety</th>
         <th>MM/DD/YYY</th>
       </tr>
-      { props.items.map((item, idx) => <ListItem item={item} key={idx}/>)}
+      { props.items.map((item, idx) => <TableItem item={item} key={idx}/>)}
     </tbody>
   </table>
 );

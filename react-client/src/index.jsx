@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import List from './components/Table.jsx';
+import Table from './components/Table.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Hacking Incidents</h1>
-      <List items={this.state.items}/>
+      <Table items={this.state.items}/>
     </div>);
   }
 }
